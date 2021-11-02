@@ -1,9 +1,9 @@
 public class Staircases {
 
     public static int possibleSums (int num, int sum) {
-        int res = 0;
-        int previous;
-        int limit = minimumBiggestInt(num + sum);
+        int res = 0;    // answer initialized to 0
+        int previous;   // auxiliar
+        int limit = minimumBiggestInt(num + sum);   // measures the number of possible 
 
         if (sum == num && num == 2) {
             return 0;
@@ -12,17 +12,11 @@ public class Staircases {
         }
 
         while (num >= limit) {
-            //System.out.println("num: " + num);
-            //System.out.println("sum: " + sum);
             previous = num;
 
             if (previous > sum && num != sum) {
 
-                //System.out.println("First case");
-                //System.out.print(num + " + " + sum + "  ");
                 res += possibleSums(sum, 0);
-                //System.out.println("");
-                //System.out.println(res);
 
             } else if (sum == num && num == 2) {
 
@@ -30,20 +24,16 @@ public class Staircases {
 
             } else {
 
-                //System.out.println("Second case");
-                //System.out.print(num + " + " + sum + "  ");
                 res += possibleSums(num - 1, sum - (num - 1));
-                //System.out.println("");
-                //System.out.println(res);
 
             }
-
             sum++;
             num--;
         }
         return res;
     }
 
+    // Auxiliar Function 
     public static int minimumBiggestInt(int n) {
         int res = 1;
         while (n > 0) {
@@ -58,8 +48,14 @@ public class Staircases {
     }
 
     public static void main(String[] args) {
+        // Most basic case
+        System.out.print("Example N = 3. Answer: ");
+        System.out.println(solution(3));
+        // Case of problem description
+        System.out.print("Example N = 10. Answer: ");
+        System.out.println(solution(10));
+        // Most complex case
+        System.out.print("Example N = 200. Answer: ");
         System.out.println(solution(200));
-
-        //System.out.println(minimumBiggestInt(20));
     }
 }
